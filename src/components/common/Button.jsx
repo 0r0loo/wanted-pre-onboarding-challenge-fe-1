@@ -1,9 +1,10 @@
 import React from "react";
 import styled from "styled-components";
+import { useWatch } from "react-hook-form";
 
-function Button({ title, onClick, disabled }) {
+function Button({ type = "button", title, onClick, disabled }) {
   return (
-    <CustomButton onClick={onClick} disabled={disabled}>
+    <CustomButton type={type} onClick={onClick} disabled={disabled}>
       {title}
     </CustomButton>
   );
