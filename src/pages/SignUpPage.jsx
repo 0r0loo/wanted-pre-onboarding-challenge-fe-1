@@ -12,7 +12,7 @@ function SignUpPage() {
   const { register, handleSubmit } = useForm();
   const navigate = useNavigate();
 
-  const onSubmit = (data) => {
+  const onSubmit = async (data) => {
     console.log("-> data", data);
     const isCheckEmail = Utils.checkEmail(data.email);
     const isCheckPassword = Utils.checkPassword(data.password);
@@ -25,7 +25,7 @@ function SignUpPage() {
       return alert("비밀번호는 8자 이상 입력해주세요.");
     }
 
-    signUpApi(data);
+    await signUpApi(data);
     navigate("/");
   };
 
