@@ -20,8 +20,8 @@ function LoginPage() {
     formState: { errors },
   } = useForm();
 
-  const onSubmit = (data) => {
-    loginApi(data);
+  const onSubmit = async (data) => {
+    await loginApi(data);
     navigate("/todos");
   };
 
