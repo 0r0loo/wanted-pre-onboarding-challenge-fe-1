@@ -16,7 +16,8 @@ export const getTodosApi = async () => httpClient.get(`${DEFAULT_URL}`);
  * Headers
  * Authorization: login token
  */
-export const getTodoByIdApi = async () => {};
+export const getTodoByIdApi = async (id) =>
+  httpClient.get(`${DEFAULT_URL}/${id}`);
 /**
  *
  * URL
@@ -27,12 +28,14 @@ export const getTodoByIdApi = async () => {};
  * Headers
  * Authorization: login token
  */
-export const createTodoApi = async () => {};
-export const updateTodoApi = async () => {};
+export const createTodoApi = async () => httpClient.post(`${DEFAULT_URL}`);
+export const updateTodoApi = async (id) =>
+  httpClient.put(`${DEFAULT_URL}/${id}`);
 /**
  * URL
  * DELETE /todos/:id
  * Headers
  * Authorization: login token
  */
-export const deleteTodoApi = async () => {};
+export const deleteTodoApi = async (id) =>
+  httpClient.delete(`${DEFAULT_URL}/${id}`);
