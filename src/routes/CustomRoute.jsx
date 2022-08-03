@@ -13,8 +13,6 @@ function CustomRoute() {
     (token) => {
       if (token && ["/", "/auth"].includes(pathname)) {
         navigation("/todos");
-      } else {
-        navigation("/");
       }
     },
     [navigation, pathname]
