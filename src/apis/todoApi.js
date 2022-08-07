@@ -28,7 +28,9 @@ export const getTodoByIdApi = async (id) =>
  * Headers
  * Authorization: login token
  */
-export const createTodoApi = async () => httpClient.post(`${DEFAULT_URL}`);
+export const createTodoApi = async (data) =>
+  httpClient.post(`${DEFAULT_URL}`, data);
+
 export const updateTodoApi = async (id) =>
   httpClient.put(`${DEFAULT_URL}/${id}`);
 /**
