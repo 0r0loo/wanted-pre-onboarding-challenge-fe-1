@@ -4,7 +4,7 @@ import Button from "./common/Button";
 import { useForm } from "react-hook-form";
 import { createTodoApi } from "../apis/todoApi";
 
-function TodoForm() {
+function TodoForm({ setTodos }) {
   const { register, handleSubmit } = useForm();
 
   const onSubmit = async (data) => {
@@ -14,6 +14,7 @@ function TodoForm() {
 
     const result = await createTodoApi(data);
     console.log(result);
+    setTodos((prev) => [...prev, result.data.data]);
   };
 
   return (

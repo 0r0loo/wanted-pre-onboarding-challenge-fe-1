@@ -31,8 +31,8 @@ export const getTodoByIdApi = async (id) =>
 export const createTodoApi = async (data) =>
   httpClient.post(`${DEFAULT_URL}`, data);
 
-export const updateTodoApi = async (id) =>
-  httpClient.put(`${DEFAULT_URL}/${id}`);
+export const updateTodoApi = async (todo) =>
+  httpClient.put(`${DEFAULT_URL}/${todo.id}`, todo);
 /**
  * URL
  * DELETE /todos/:id

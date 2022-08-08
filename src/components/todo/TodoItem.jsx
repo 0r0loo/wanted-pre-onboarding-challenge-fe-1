@@ -1,23 +1,45 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getTodoByIdApi } from "../../apis/todoApi";
+import { deleteTodoApi, getTodoByIdApi } from "../../apis/todoApi";
+import Button from "../common/Button";
+import Input from "../common/Input";
+import { useForm } from "react-hook-form";
 
-function TodoItem({ todo }) {
-  const { id } = useParams();
-  console.log("-> id", id);
+function TodoItem({ todo, onClickDeleteTodo, onClickModifyTodo }) {
+  const { handleSubmit, register } = useForm({
+    defaultValues: {
+      title: todo.title,
+      content: todo.content,
+    },
+  });
+  const [isModify, setIsModify] = useState(false);
 
-  useEffect(() => {
-    if (id) {
-      (async () => {
-        const result = await getTodoByIdApi(id);
-      })();
-    }
-  }, [id]);
+  const onClcikModifyTodo = (_todo) => {
+    onClickModifyTodo({
+      ...todo,
+      title: _todo.title,
+      content: _todo.content,
+    });
+    setIsModify(false);
+  };
 
   return (
     <>
-      <h2>{todo.title}</h2>
-      <p>{todo.content}</p>
+      {isModify ? (
+        <form onSubmit={handleSubmit(onClcikModifyTodo)}>
+          <Input name={"title"} register={register} />
+          <Input name={"content"} register={register} />
+          <Button title={"완료"} type={"submit"} />
+        </form>
+      ) : (
+        <>
+          <h2>{todo.title}</h2>
+          <p>{todo.content}</p>
+          <Button title={"수정"} onClick={() => setIsModify(true)} />
+        </>
+      )}
+
+      <Button title={"삭제"} onClick={() => onClickDeleteTodo(todo.id)} />
     </>
   );
 }
